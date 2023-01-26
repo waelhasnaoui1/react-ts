@@ -1,4 +1,3 @@
-import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -18,7 +17,10 @@ import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/material";
 import CountrySelect from "../SelectCountry";
 import { styled } from "@mui/material/styles";
 import InputLabel from '@mui/material/InputLabel';
-
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/bootstrap.css'
+import { useState } from "react";
+import './signUp.css'
 function Copyright(props: any) {
   return (
     <Typography
@@ -63,6 +65,9 @@ const StyledFormControlLabel = styled(FormControlLabel)(({ theme }) => ({
 // `;
 
 export default function SignUp() {
+
+  const [value,setValue]= useState();
+
   const {
     register,
     handleSubmit,
@@ -78,7 +83,7 @@ export default function SignUp() {
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
-        <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>
+        <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
           <Box
             sx={{
               my: 8,
@@ -123,7 +128,7 @@ export default function SignUp() {
               </RadioGroup>
             </FormControl>
               </Grid>
-        
+              <Box sx={{mt:3}}/>
               <Grid container>
                 <Grid item sm={12} md={12} lg={12}>
                   <InputLabel sx={{color:'black',textAlign:'start'}} variant="standard">Company Name</InputLabel>
@@ -148,6 +153,7 @@ export default function SignUp() {
                     {...register("adress")}
                   />
                 </Grid>
+                <Box sx={{mt:14}}/>
                 <Grid item sm={12} md={12} lg={12}>
                   <InputLabel sx={{color:'black',textAlign:'start'}} variant="standard">Address</InputLabel>
                   <TextField
@@ -178,15 +184,26 @@ export default function SignUp() {
                     <CountrySelect/>
                   </Grid>
                 </Grid>
+                <Box sx={{mt:8}}/>
+                <Grid item sm={12} md={8} lg={8}>
+                  <InputLabel sx={{color:'black',textAlign:'start'}} variant="standard">Phone</InputLabel>
+                  <Box sx={{backgroundColor:'#eeeeee'}}>
+                  <PhoneInput
+                                               
+                    country={'us'}
+                    value={value}
+                    onChange={()=>{}}
+                  />
+                  </Box>
+                  
+                </Grid>
+                
               </Grid>
-              <Grid container>
-                <Grid item></Grid>
-              </Grid>
+              
+                
+           
 
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
+           
               <Button
                 type="submit"
                 fullWidth
@@ -216,7 +233,7 @@ export default function SignUp() {
           item
           xs={false}
           sm={4}
-          md={8}
+          md={6}
           sx={{
             backgroundImage: "url(https://source.unsplash.com/random)",
             backgroundRepeat: "no-repeat",
