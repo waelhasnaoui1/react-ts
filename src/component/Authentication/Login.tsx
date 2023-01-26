@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useForm } from 'react-hook-form';
-import { loginService } from './../../../services/loginService';
+import { loginService } from '../../services/loginService';
 
 function Copyright(props: any) {
   return (

@@ -1,3 +1,6 @@
-export interface ForgotPasswordModel {
-    email: string;
+import { SignUpModel } from './singUpModel';
+
+export interface ForgotPasswordModel extends SignUpModel  {
+
+
 }

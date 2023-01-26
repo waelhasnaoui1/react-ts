@@ -1,4 +1,3 @@
-export interface LoginModel {
-    email: string;
-    password: string;
-}
+import { SignUpModel } from './singUpModel';
+
+export interface LoginModel extends SignUpModel {}
