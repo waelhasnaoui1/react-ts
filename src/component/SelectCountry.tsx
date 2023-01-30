@@ -25,7 +25,7 @@ export default function CountrySelect() {
       )}
       renderInput={(params) => (
         <TextField
-            variant='standard'
+           
           {...params}
           sx={{
             borderRadius:'10px',
@@ -36,7 +36,7 @@ export default function CountrySelect() {
           inputProps={{            
             ...params.inputProps,
             autoComplete: 'new-password',
-            disableUnderline: true, 
+            disableUnderline: false, 
           }}
         />
       )}

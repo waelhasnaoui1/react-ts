@@ -11,16 +11,16 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { loginService } from "../../services/loginService";
 import { Controller, useForm } from "react-hook-form";
 import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/material";
-import CountrySelect from "../SelectCountry";
+
 import { styled } from "@mui/material/styles";
 import InputLabel from '@mui/material/InputLabel';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/bootstrap.css'
 import { useState } from "react";
 import './signUp.css'
+import CountrySelect from './../../SelectCountry';
 function Copyright(props: any) {
   return (
     <Typography
@@ -67,10 +67,14 @@ const StyledFormControlLabel = styled(FormControlLabel)(({ theme }) => ({
 export default function SignUp() {
 
   const [value,setValue]= useState();
-
+  const handleChange = (event:any)=> {
+    const {name,value} = event.target; 
+    setValue(name);
+  }
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
     control,
   } = useForm();
@@ -122,8 +126,15 @@ export default function SignUp() {
                   '&$checked': {
                     color: 'red',
                   },
-                 }} value="female" control={<Radio />} label="Female" />
-                <FormControlLabel sx={{color:'#c1c1c2',background:'#eeeeee',paddingY:1,paddingX:2,borderRadius:'10px'}} value="male" control={<Radio />} label="Male" />
+                 }} value="Client" control={<Radio />} label="Client" {...register('role')} checked={watch('role')}/>
+                <FormControlLabel
+                 sx={{color:'#c1c1c2',
+                 background:'#eeeeee',
+                 paddingY:1,
+                 paddingX:2,
+                 borderRadius:'10px'}}
+                  value="Retailer"
+                   control={<Radio />} label="Retailer"  />
                
               </RadioGroup>
             </FormControl>
@@ -145,12 +156,11 @@ export default function SignUp() {
                   }}
                     margin="normal"
                     required
-                    fullWidth
-                    
+                    fullWidth                    
                     type="text"
-                    id="address"
+                    id="company"
                     autoComplete="current-password"
-                    {...register("adress")}
+                    {...register("name")}
                   />
                 </Grid>
                 <Box sx={{mt:14}}/>
@@ -174,7 +184,7 @@ export default function SignUp() {
                     type="text"
                     id="address"
                     autoComplete="current-password"
-                    {...register("adress")}
+                    {...register("address")}
                   />
                 </Grid>
                 <Grid container>
@@ -189,10 +199,10 @@ export default function SignUp() {
                   <InputLabel sx={{color:'black',textAlign:'start'}} variant="standard">Phone</InputLabel>
                   <Box sx={{backgroundColor:'#eeeeee'}}>
                   <PhoneInput
-                                               
+                    {...register("phone")}                           
                     country={'us'}
                     value={value}
-                    onChange={()=>{}}
+                    onChange={()=>{setValue(value)}}
                   />
                   </Box>
                   
