@@ -2,10 +2,25 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import { styled } from "@mui/material/styles";
+export default function CountrySelect({callbackFunc}) {
 
-export default function CountrySelect() {
+
+
+  const UnborderTextField = styled(TextField)(() => ({
+    "& .MuiOutlinedInput-notchedOutline": {
+      border: "none",
+     
+    },
+  }));
+
+  const [country,setCountry] = React.useState('')
+
+
   return (
     <Autocomplete
+      onChange={(event,newValue:any)=>callbackFunc(newValue.label)}
+
       id="country-select-demo"
       sx={{ width: 300 }}
       options={countries}
@@ -24,19 +39,20 @@ export default function CountrySelect() {
         </Box>
       )}
       renderInput={(params) => (
-        <TextField
-           
+        <UnborderTextField          
+          
           {...params}
+      
           sx={{
             borderRadius:'10px',
            background:'#eeeeee',
-           paddingY:1,paddingX:2
+         
           }}
           placeholder="Country"
           inputProps={{            
             ...params.inputProps,
             autoComplete: 'new-password',
-            disableUnderline: false, 
+            disableUnderline: true, 
           }}
         />
       )}
